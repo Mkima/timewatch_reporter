@@ -1,0 +1,6 @@
+tqdm
+BeautifulSoup4
+requests
+pandas
+lxml
+tabulate
