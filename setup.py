@@ -6,11 +6,19 @@ setup(
   name = 'timewatch',
   packages = ['timewatch'],
   version = timewatch.__version__,
-  description = 'A library automating worktime reports for timewatch.co.il',
+  description = 'A library that automates worktime task reports for timewatch.co.il',
   long_description=(open('README.md').read() if exists('README.md') else ''),
   author = 'Maor Kima',
   author_email = 'maorkima@gmail.com',
-  download_url = 'https://github.com/nirizr/timewatch/tarball/{}'.format(timewatch.__version__),
+install_requires=[
+            'tqdm',
+    'BeautifulSoup4',
+    'requests',
+    'pandas',
+    'lxml',
+    'tabulate',
+        ],
+
   keywords = ['timewatch', 'timewatch.co.il'], # arbitrary keywords
   classifiers = [],
 )
