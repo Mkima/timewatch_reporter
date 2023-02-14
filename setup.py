@@ -20,7 +20,7 @@ install_requires=[
         ],
     entry_points={
         'console_scripts': [
-            'timewatch_reporter=timewatch.__main__:main'
+            'timewatch=timewatch.__main__:main'
         ]
     },
   keywords = ['timewatch', 'timewatch.co.il'], # arbitrary keywords
