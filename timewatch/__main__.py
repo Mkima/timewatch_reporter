@@ -1,7 +1,7 @@
 import argparse
 from datetime import datetime
 
-from .timewatch import TimeWatch
+from timewatch.timewatch import TimeWatch
 
 
 def main():
