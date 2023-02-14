@@ -1,5 +1,6 @@
 import argparse
-from datetime import datetime
+import datetime
+import logging
 
 from timewatch.timewatch import TimeWatch
 
