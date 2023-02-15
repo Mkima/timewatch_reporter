@@ -89,7 +89,7 @@ class TimeWatch:
         return r
     def task_report(self):
 
-        data = {'url': '/projects/po_tasks.php', 'rptype':1, 'params':'tl%3D{EID}%26ee%3D{EID}%26e%3D{cmp}%26p%3D0%26spi%3Dtrue%26wotasks%3Dtrue%26isIphoneApp%3D0'.format(EID=self.employeeid,cmp=self.company),'m':1, 'y':2023}
+        data = {'url': '/projects/po_tasks.php', 'rptype':1, 'params':'tl%3D{EID}%26ee%3D{EID}%26e%3D{cmp}%26p%3D0%26spi%3Dtrue%26wotasks%3Dtrue%26isIphoneApp%3D0'.format(EID=self.employeeid,cmp=self.company),'m':datetime.datetime.today().month, 'y':datetime.datetime.today().year}
         #r = self.session.post('https://c.timewatch.co.il/include/estimateloadajx.php', data, headers=self.headers )
         rp_path = self.session.post('https://c.timewatch.co.il/include/pipe2repsrv.php', data, headers=self.headers )
         rp_data = self.session.get(rp_path.text.split('\t')[0])
@@ -102,6 +102,7 @@ class TimeWatch:
             with open(html_file,'rb') as f:
                 df_data = pd.read_html(f.read())
         df_data = pd.read_html(html_data)
+        l = list()
         for d in df_data:
             relevant_table = False
             for i, r in d.iterrows():
@@ -111,10 +112,11 @@ class TimeWatch:
 
 
                 if relevant_table and type(r) is pd.Series and r[3] is not None and type(r[3]) is str and 'כללי' in r[3]:
-                    all_records= all_records.append(r,ignore_index=True)
-
+                    l.append(r)
+        all_records = pd.DataFrame(l)
         all_records.columns = header
         all_records['סה"כ שעות'] = all_records['סה"כ שעות'].astype(float)
+        all_records.to_csv(r'\tmp\test.csv')
         sum = all_records.groupby('משימה')['סה"כ שעות'].sum()
         total = sum.sum()
         print(sum.to_string())

@@ -2,10 +2,11 @@ import argparse
 import datetime
 import logging
 
-from timewatch.timewatch import TimeWatch
+from .timewatch import TimeWatch
 
 
 def main():
+  print(' Welcome to TimeWatch Reporter!')
   parser = argparse.ArgumentParser(description='Automatic work hours reporting for timewatch.co.il')
 
   parser.add_argument('company', type=int, help='Company ID')
