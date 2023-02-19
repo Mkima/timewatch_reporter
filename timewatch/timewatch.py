@@ -116,12 +116,12 @@ class TimeWatch:
         all_records = pd.DataFrame(l)
         all_records.columns = header
         all_records['סה"כ שעות'] = all_records['סה"כ שעות'].astype(float)
-        import tempfile
+       # import tempfile
 
-        tempdir = tempfile.gettempdir()
-        file = tempdir.join(r'hours_report.csv')
-        print('report file at:'+file)
-        all_records.to_csv(file)
+        #tempdir = tempfile.gettempdir()
+        #file = tempdir.join(r'hours_report.csv')
+        #print('report file at:'+file)
+        #all_records.to_csv(file)
         sum = all_records.groupby('משימה')['סה"כ שעות'].sum()
         total = sum.sum()
         print(sum.to_string())
